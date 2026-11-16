@@ -1,17 +1,9 @@
-MISE A JOUR V1.8 - SUPPRESSION D'UNE PARCELLE
+MISE A JOUR V1.9 - GRUMES
 
-Fonction ajoutée :
-- après ouverture d'une parcelle, un bouton rouge « Supprimer cette parcelle » apparaît ;
-- la confirmation indique le nombre d'arbres et de mesures qui seront supprimés ;
-- la parcelle, tous ses arbres et tous leurs profils sont supprimés ensemble ;
-- la suppression est irréversible ;
-- si plusieurs parcelles portent exactement le même nom, la suppression est bloquée par sécurité.
+Après ouverture d'une parcelle, deux types de relevés sont disponibles :
+- Arbres complets, avec le fonctionnement existant ;
+- Grumes, avec numéro, longueur, pas de mesure et profil de diamètres.
 
-Déploiement GitHub :
-1. Conserver delete-tree-patch.js déjà présent à la racine.
-2. Ajouter delete-parcel-patch.js à la racine.
-3. Remplacer service-worker.js par celui de cette archive.
-4. Committer les fichiers.
-5. Ouvrir l'application avec Internet, actualiser, fermer puis rouvrir.
+Le 0 m d'une grume correspond à son gros bout. Chaque grume peut être reprise, terminée ou supprimée. Les grumes utilisent les mêmes stores IndexedDB que les arbres, avec le champ type=grume.
 
-Le cache passe en v5. La mise à jour ne supprime aucune donnée par elle-même.
+GitHub : ajouter grumes-patch.js et remplacer service-worker.js. Conserver delete-tree-patch.js et delete-parcel-patch.js. Le cache passe en v6.
