@@ -1,7 +1,7 @@
 {
   "name": "Cubage Douglas",
   "short_name": "Cubage",
-  "description": "Saisie terrain de profils de tiges et diamètres de Douglas",
+  "description": "Saisie de profils de tiges",
   "lang": "fr-FR",
   "start_url": "./",
   "scope": "./",
