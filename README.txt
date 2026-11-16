@@ -1,16 +1,17 @@
-MISE A JOUR V1.7 - SUPPRESSION D'UN ARBRE
+MISE A JOUR V1.8 - SUPPRESSION D'UNE PARCELLE
 
 Fonction ajoutée :
-- lorsqu'une fiche arbre est ouverte, un bouton rouge « Supprimer cet arbre » apparaît ;
-- le bouton est disponible pour un arbre terminé ou en cours ;
-- une confirmation précise que l'arbre et toutes ses mesures seront supprimés ;
-- la suppression est réalisée dans une seule transaction IndexedDB ;
-- si plusieurs arbres strictement identiques sont détectés, la suppression est bloquée par sécurité.
+- après ouverture d'une parcelle, un bouton rouge « Supprimer cette parcelle » apparaît ;
+- la confirmation indique le nombre d'arbres et de mesures qui seront supprimés ;
+- la parcelle, tous ses arbres et tous leurs profils sont supprimés ensemble ;
+- la suppression est irréversible ;
+- si plusieurs parcelles portent exactement le même nom, la suppression est bloquée par sécurité.
 
 Déploiement GitHub :
-1. Ajouter delete-tree-patch.js à la racine du dépôt.
-2. Remplacer service-worker.js par celui de cette archive.
-3. Committer les deux fichiers.
-4. Ouvrir l'application avec Internet, actualiser, fermer puis rouvrir.
+1. Conserver delete-tree-patch.js déjà présent à la racine.
+2. Ajouter delete-parcel-patch.js à la racine.
+3. Remplacer service-worker.js par celui de cette archive.
+4. Committer les fichiers.
+5. Ouvrir l'application avec Internet, actualiser, fermer puis rouvrir.
 
-Le cache passe en v4. Les données existantes ne sont pas supprimées lors de la mise à jour.
+Le cache passe en v5. La mise à jour ne supprime aucune donnée par elle-même.
