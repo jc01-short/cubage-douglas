@@ -1,16 +1,13 @@
-MISE A JOUR V1.10 - RECAPITULATIF DE CUBAGE
+MISE A JOUR V1.11 - TABLEAU DE BORD DE PARCELLE
 
-Sur une tige terminée ou une grume terminée, la fiche affiche :
-- volume Smalian mesuré entre les sections réellement relevées ;
-- volume total estimé jusqu'à Htot/longueur totale ;
-- volumes aux découpes 20 cm, 14 cm et 7 cm ;
-- DMM mesurée en cm/m.
+Après ouverture d'une parcelle :
+- un cadre récapitulatif affiche le nom de la parcelle ;
+- nombre d'arbres, de grumes, de tiges terminées et de profils en cours ;
+- volume Smalian moyen et total des tiges terminées ;
+- tableau du nombre de relevés par classe de diamètre ;
+- deux cadres homogènes : Arbres et Grumes ;
+- chaque cadre contient sa liste et son bouton de nouvelle saisie.
 
-Hypothèses :
-- section circulaire ;
-- interpolation linéaire des diamètres entre deux mesures ;
-- formule de Smalian pour chaque tronçon ;
-- si la dernière mesure est avant Htot, ajout d'une section terminale estimée allant du dernier diamètre à 0 cm à Htot ;
-- DMM = (diamètre initial - dernier diamètre réellement mesuré) / longueur réellement mesurée.
+Classes de diamètre : <30, 30-39, 40-49, 50-59, 60-69, 70-79, >=80 cm. Le classement des arbres utilise D130. Celui des grumes utilise le premier diamètre mesuré au gros bout.
 
-GitHub : ajouter volume-recap-patch.js et remplacer service-worker.js. Conserver les patchs précédents. Le cache passe en v7.
+GitHub : ajouter parcel-dashboard-patch.js et remplacer service-worker.js. Conserver tous les patchs précédents. Le cache passe en v8.
