@@ -1,1 +1,420 @@
-*{box-sizing:border-box}:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#102018;background:#eef5f0}body{margin:0}main{max-width:760px;margin:auto;padding:12px}header{display:grid;grid-template-columns:48px 48px 1fr auto;gap:8px;align-items:center;margin-bottom:14px}h1{font-size:1.35rem;text-align:center;margin:0}h2{font-size:1.15rem;margin:0 0 14px}.view{display:none}.view.active{display:block}article{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 4px 16px #173d2915}label{display:block;font-weight:750;margin-bottom:13px}input,select,button{width:100%;min-height:52px;border-radius:12px;font:inherit}input,select{margin-top:6px;padding:12px;border:1px solid #afc2b4;background:white;font-size:1.1rem}button{border:0;background:#19663c;color:#fff;font-weight:800;padding:11px;cursor:pointer}.light,#back,#homeBtn{background:#edf5ef;color:#154f30;border:1px solid #bad0c0}.danger{background:#a62929}.two,.actions3{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions3{grid-template-columns:1fr 1fr 1fr}.badge,#net{display:inline-block;background:#dff3e7;color:#195c35;border-radius:999px;padding:6px 10px;font-weight:800}.hint{background:#edf5ef;padding:12px;border-radius:12px;line-height:1.4}.msg{color:#7a5700;font-weight:750;min-height:1.2em}.row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #e3ebe5}.row button{width:auto;min-height:42px}.classline{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e3ebe5}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#edf5ef;padding:12px;border-radius:12px}.metric b{display:block;color:#195c35;font-size:1.2rem}.voice{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin-bottom:4px}.voiceBtn.listening{background:#a62929;animation:pulse 1s infinite}.switch{display:flex;gap:8px;align-items:center;font-weight:650;margin:0}.switch input{width:22px;min-height:22px;margin:0}.modal{position:fixed;inset:0;background:#0008;display:grid;place-items:center;padding:12px}.modal[hidden]{display:none}.modal article{width:min(520px,100%)}.alert{background:#ffe3e3;color:#7c1111;padding:12px;border-radius:12px}@keyframes pulse{50%{opacity:.65}}@media(max-width:560px){header{grid-template-columns:44px 44px 1fr}header h1{grid-row:2;grid-column:1/4}#net{grid-column:3;grid-row:1;justify-self:end}.two,.actions3,.metrics{grid-template-columns:1fr}.voice{grid-template-columns:1fr}article{padding:15px}.actions3 #newSame{order:-1}}
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #102018;
+  background: #eef5f0;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  max-width: 760px;
+  margin: auto;
+  padding: 12px;
+}
+
+/* =====================================================
+   EN-TÊTE CORRIGÉ
+   ===================================================== */
+
+header {
+  display: grid;
+  grid-template-columns:
+    48px
+    48px
+    minmax(145px, auto)
+    minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+/* Boutons Accueil et Retour */
+header > button {
+  min-width: 0;
+}
+
+/* Titre de l'application */
+h1 {
+  min-width: 0;
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.15;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Indicateur réseau / état « Prêt » */
+#net {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  justify-self: stretch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =====================================================
+   TITRES ET VUES
+   ===================================================== */
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 1.15rem;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+/* =====================================================
+   CARTES
+   ===================================================== */
+
+article {
+  margin-bottom: 14px;
+  padding: 18px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #173d2915;
+}
+
+/* =====================================================
+   FORMULAIRES
+   ===================================================== */
+
+label {
+  display: block;
+  margin-bottom: 13px;
+  font-weight: 750;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 12px;
+  font: inherit;
+}
+
+input,
+select {
+  margin-top: 6px;
+  padding: 12px;
+  border: 1px solid #afc2b4;
+  background: #fff;
+  font-size: 1.1rem;
+}
+
+button {
+  padding: 11px;
+  border: 0;
+  background: #19663c;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #75ae8b;
+  outline-offset: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* =====================================================
+   BOUTONS SECONDAIRES
+   ===================================================== */
+
+.light,
+#back,
+#homeBtn {
+  background: #edf5ef;
+  color: #154f30;
+  border: 1px solid #bad0c0;
+}
+
+.danger {
+  background: #a62929;
+}
+
+/* =====================================================
+   GRILLES D'ACTIONS
+   ===================================================== */
+
+.two,
+.actions3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.actions3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* =====================================================
+   ÉTAT ET BADGES
+   ===================================================== */
+
+.badge,
+#net {
+  padding: 8px 12px;
+  background: #dff3e7;
+  color: #195c35;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.hint {
+  padding: 12px;
+  background: #edf5ef;
+  border-radius: 12px;
+  line-height: 1.4;
+}
+
+.msg {
+  min-height: 1.2em;
+  color: #7a5700;
+  font-weight: 750;
+}
+
+/* =====================================================
+   LISTES
+   ===================================================== */
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e3ebe5;
+}
+
+.row button {
+  width: auto;
+  min-height: 42px;
+}
+
+.classline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e3ebe5;
+}
+
+/* =====================================================
+   INDICATEURS ET VOLUMES
+   ===================================================== */
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.metric {
+  min-width: 0;
+  padding: 12px;
+  background: #edf5ef;
+  border-radius: 12px;
+}
+
+.metric b {
+  display: block;
+  color: #195c35;
+  font-size: 1.2rem;
+}
+
+/* =====================================================
+   SAISIE VOCALE
+   ===================================================== */
+
+.voice {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.voiceBtn.listening {
+  background: #a62929;
+  animation: pulse 1s infinite;
+}
+
+.switch {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  font-weight: 650;
+}
+
+.switch input {
+  width: 22px;
+  min-height: 22px;
+  margin: 0;
+}
+
+/* =====================================================
+   FENÊTRE MODALE
+   ===================================================== */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: #0008;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal article {
+  width: min(520px, 100%);
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+}
+
+.alert {
+  padding: 12px;
+  background: #ffe3e3;
+  color: #7c1111;
+  border-radius: 12px;
+}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+
+@keyframes pulse {
+  50% {
+    opacity: 0.65;
+  }
+}
+
+/* =====================================================
+   TABLETTES ET ÉCRANS INTERMÉDIAIRES
+   Le bandeau passe sous les boutons et le titre.
+   ===================================================== */
+
+@media (max-width: 700px) {
+  header {
+    grid-template-columns: 48px 48px minmax(0, 1fr);
+  }
+
+  header h1 {
+    grid-column: 3;
+    grid-row: 1;
+    white-space: normal;
+    overflow-wrap: normal;
+  }
+
+  #net {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+/* =====================================================
+   TÉLÉPHONES
+   ===================================================== */
+
+@media (max-width: 560px) {
+  main {
+    padding: 10px;
+  }
+
+  header {
+    grid-template-columns: 44px 44px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  header h1 {
+    grid-column: 3;
+    grid-row: 1;
+    min-width: 0;
+    font-size: 1.25rem;
+    line-height: 1.1;
+    text-align: left;
+  }
+
+  #net {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .two,
+  .actions3,
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .voice {
+    grid-template-columns: 1fr;
+  }
+
+  article {
+    padding: 15px;
+  }
+
+  .actions3 #newSame {
+    order: -1;
+  }
+}
+
+/* =====================================================
+   TRÈS PETITS ÉCRANS
+   ===================================================== */
+
+@media (max-width: 360px) {
+  main {
+    padding: 8px;
+  }
+
+  header {
+    grid-template-columns: 42px 42px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  header h1 {
+    font-size: 1.12rem;
+  }
+
+  article {
+    padding: 13px;
+    border-radius: 14px;
+  }
+
+  input,
+  select,
+  button {
+    min-height: 50px;
+  }
+}
