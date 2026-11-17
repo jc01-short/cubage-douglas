@@ -1,19 +1,25 @@
-CORRECTION V2.4 - FENETRE FIN DE TIGE
+MISE À JOUR V2.5 - RÉINITIALISATION COMPLÈTE
 
-Cause : la classe CSS .tw-modal imposait display:flex. Cette règle pouvait prendre le dessus sur l'attribut HTML hidden, ce qui maintenait la fenêtre visible même lorsqu'elle devait être fermée.
+Un cadre « Réinitialisation » est ajouté en bas de l'écran d'accueil.
+Le bouton rouge « Tout effacer et repartir à zéro » supprime localement :
+- toutes les parcelles ;
+- tous les arbres ;
+- toutes les grumes ;
+- toutes les mesures et tous les profils.
 
-Correction :
-- règle globale [hidden] { display:none !important; } ;
-- fermeture forcée au démarrage ;
-- bouton Annuler renforcé ;
-- nettoyage de l'affichage lors de la validation.
+Sécurité :
+1. affichage du nombre d'éléments qui seront supprimés ;
+2. première confirmation ;
+3. saisie obligatoire du mot EFFACER ;
+4. suppression des trois stores IndexedDB dans une seule transaction.
 
-DEPLOIEMENT GITHUB
-1. Ajouter modal-fix-v24.js à la racine.
+Cette opération n'efface pas les fichiers CSV déjà téléchargés et ne modifie pas les fichiers GitHub. Elle ne concerne que les données IndexedDB de l'appareil utilisé.
+
+DÉPLOIEMENT GITHUB
+1. Ajouter reset-data-v25.js à la racine.
 2. Remplacer service-worker.js.
-3. Conserver ui-v21.js, tree-protocol-v22.js et tous les fichiers V2.
-4. Committer.
-5. Ouvrir le site avec Internet et actualiser deux fois.
-6. Fermer complètement la PWA ou Chrome puis rouvrir.
+3. Conserver ui-v21.js, tree-protocol-v22.js, modal-fix-v24.js et les fichiers de la V2.
+4. Committer puis ouvrir l'application avec Internet.
+5. Actualiser deux fois, fermer complètement, puis rouvrir.
 
-Le cache passe à cubage-douglas-complet-v24. Aucune donnée IndexedDB n'est supprimée.
+Le cache passe à cubage-douglas-complet-v25.

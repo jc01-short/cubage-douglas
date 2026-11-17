@@ -1,12 +1,12 @@
-const CACHE="cubage-douglas-complet-v24";
-const FILES=["./","./index.html","./styles.css","./db.js","./app.js","./ui-v21.js","./tree-protocol-v22.js","./modal-fix-v24.js","./manifest.webmanifest","./icons/icon-192.png","./icons/icon-512.png"];
+const CACHE="cubage-douglas-complet-v25";
+const FILES=["./","./index.html","./styles.css","./db.js","./app.js","./ui-v21.js","./tree-protocol-v22.js","./modal-fix-v24.js","./reset-data-v25.js","./manifest.webmanifest","./icons/icon-192.png","./icons/icon-512.png"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 async function patchHtml(r){
  const type=r.headers.get("content-type")||"";
  if(!type.includes("text/html"))return r;
  let h=await r.text();
- for(const f of ["ui-v21.js","tree-protocol-v22.js","modal-fix-v24.js"]){
+ for(const f of ["ui-v21.js","tree-protocol-v22.js","modal-fix-v24.js","reset-data-v25.js"]){
   if(!h.includes(f))h=h.replace("</body>",'<script src="./'+f+'"></script></body>');
  }
  return new Response(h,{status:r.status,statusText:r.statusText,headers:r.headers});
