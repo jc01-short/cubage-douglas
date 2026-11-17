@@ -1,14 +1,19 @@
-CORRECTION V2.3 - INITIALISATION
+CORRECTION V2.4 - FENETRE FIN DE TIGE
 
-Cause corrigée : ui-v21.js supprimait du DOM les contrôles backupJson et restoreJson, alors que app.js tentait encore de leur affecter onclick/onchange. Cela produisait : Cannot set properties of null (setting 'onclick').
+Cause : la classe CSS .tw-modal imposait display:flex. Cette règle pouvait prendre le dessus sur l'attribut HTML hidden, ce qui maintenait la fenêtre visible même lorsqu'elle devait être fermée.
 
-Correction : les contrôles JSON restent dans le DOM mais sont masqués. L'utilisateur ne les voit plus, et app.js peut terminer son initialisation normalement.
+Correction :
+- règle globale [hidden] { display:none !important; } ;
+- fermeture forcée au démarrage ;
+- bouton Annuler renforcé ;
+- nettoyage de l'affichage lors de la validation.
 
-Déploiement :
-1. Remplacer ui-v21.js.
+DEPLOIEMENT GITHUB
+1. Ajouter modal-fix-v24.js à la racine.
 2. Remplacer service-worker.js.
-3. Conserver tree-protocol-v22.js et tous les fichiers V2.
-4. Committer sur GitHub.
-5. Ouvrir avec Internet, actualiser deux fois, fermer complètement puis rouvrir.
+3. Conserver ui-v21.js, tree-protocol-v22.js et tous les fichiers V2.
+4. Committer.
+5. Ouvrir le site avec Internet et actualiser deux fois.
+6. Fermer complètement la PWA ou Chrome puis rouvrir.
 
-Supprimer des fichiers de votre PC après leur déploiement GitHub n'a aucun effet sur le site. Les fichiers utiles sont ceux présents dans le dépôt GitHub et dans le cache du navigateur.
+Le cache passe à cubage-douglas-complet-v24. Aucune donnée IndexedDB n'est supprimée.
