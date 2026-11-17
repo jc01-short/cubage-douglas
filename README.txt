@@ -1,16 +1,26 @@
-MISE A JOUR V2.1
+MISE A JOUR V2.2 - PROTOCOLE ARBRE EN UN SEUL PARCOURS
 
-Modifications :
-- suppression du pas de 0,5 m ;
-- maintien des pas 1 m, 2 m et 4 m, avec 1 m sélectionné par défaut ;
-- ajout du bouton « Accueil » dans la barre supérieure ;
-- suppression des commandes de sauvegarde et restauration JSON ;
-- maintien des deux exports CSV quotidiens.
+ARBRES
+- création avec Numéro + D130 seulement ;
+- pas imposé à 1 m ;
+- saisie régulière 0 m, 1 m, 2 m, etc. ;
+- bouton Fin de tige ;
+- saisie finale de Htot exacte et du dernier diamètre ;
+- Htot doit être située entre la dernière position régulière et la position entière suivante ;
+- état terminal : cime complète ou tige cassée ;
+- enregistrement d'une dernière section de longueur réelle, par exemple 42,00 m puis 42,50 m.
 
-DEPLOIEMENT GITHUB
-1. Ajouter ui-v21.js à la racine du dépôt.
+GRUMES
+- fonctionnement inchangé ;
+- pas 1 m, 2 m ou 4 m selon la V2.1.
+
+CALCULS
+Les calculs Smalian et les découpes 20, 14 et 7 cm utilisent automatiquement la dernière position exacte et le dernier diamètre. Aucun champ H20/H14/H7 n'est demandé.
+
+GITHUB
+1. Ajouter tree-protocol-v22.js à la racine.
 2. Remplacer service-worker.js.
-3. Conserver index.html, styles.css, db.js, app.js, manifest.webmanifest et le dossier icons.
-4. Committer, ouvrir l'application avec Internet, actualiser deux fois, fermer puis rouvrir.
+3. Conserver ui-v21.js et les fichiers de la V2.
+4. Committer, ouvrir en ligne, actualiser deux fois, fermer puis rouvrir.
 
-Le cache PWA passe à cubage-douglas-complet-v21. Les données IndexedDB ne sont pas effacées.
+Le cache passe à cubage-douglas-complet-v22. La base IndexedDB reste inchangée.
