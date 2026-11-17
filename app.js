@@ -1,1 +1,0 @@
-"use strict";/* V4: volume conventionnel grume + interpolations H20/H14/H7 */
