@@ -1,9 +1,16 @@
-MISE A JOUR V1.9 - GRUMES
+MISE A JOUR V1.10 - RECAPITULATIF DE CUBAGE
 
-Après ouverture d'une parcelle, deux types de relevés sont disponibles :
-- Arbres complets, avec le fonctionnement existant ;
-- Grumes, avec numéro, longueur, pas de mesure et profil de diamètres.
+Sur une tige terminée ou une grume terminée, la fiche affiche :
+- volume Smalian mesuré entre les sections réellement relevées ;
+- volume total estimé jusqu'à Htot/longueur totale ;
+- volumes aux découpes 20 cm, 14 cm et 7 cm ;
+- DMM mesurée en cm/m.
 
-Le 0 m d'une grume correspond à son gros bout. Chaque grume peut être reprise, terminée ou supprimée. Les grumes utilisent les mêmes stores IndexedDB que les arbres, avec le champ type=grume.
+Hypothèses :
+- section circulaire ;
+- interpolation linéaire des diamètres entre deux mesures ;
+- formule de Smalian pour chaque tronçon ;
+- si la dernière mesure est avant Htot, ajout d'une section terminale estimée allant du dernier diamètre à 0 cm à Htot ;
+- DMM = (diamètre initial - dernier diamètre réellement mesuré) / longueur réellement mesurée.
 
-GitHub : ajouter grumes-patch.js et remplacer service-worker.js. Conserver delete-tree-patch.js et delete-parcel-patch.js. Le cache passe en v6.
+GitHub : ajouter volume-recap-patch.js et remplacer service-worker.js. Conserver les patchs précédents. Le cache passe en v7.
