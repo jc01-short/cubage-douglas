@@ -31,51 +31,73 @@ header {
   margin-bottom: 14px;
 }
 
-header > button {
+/* Bouton retour */
+#back {
+  grid-column: 1;
+  grid-row: 1;
   min-width: 0;
 }
 
+/* Bouton accueil */
+#homeBtn {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+/* Le bouton masqué ne réserve pas d’espace visible */
+#back[hidden] {
+  display: none;
+}
+
+/* Titre */
 header h1 {
+  grid-column: 3;
+  grid-row: 1;
   min-width: 0;
   margin: 0;
   font-size: 1.35rem;
   line-height: 1.15;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: normal;
+  overflow-wrap: normal;
 }
 
-/* Petite pastille d'état « Prêt » */
+/* Petite pastille d’état « Prêt » */
 #net {
+  grid-column: 4;
+  grid-row: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   justify-self: end;
   width: auto;
-  min-width: auto;
+  min-width: 0;
   min-height: 34px;
-  padding: 6px 12px;
+  padding: 6px 11px;
   border: 1px solid #b9ddc7;
   border-radius: 999px;
   background: #dff3e7;
   color: #195c35;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 800;
   line-height: 1;
   white-space: nowrap;
 }
 
+/* Point d’état vert */
 #net::before {
   content: "";
   display: block;
   width: 8px;
   height: 8px;
   flex: 0 0 8px;
-  margin-right: 7px;
+  margin-right: 6px;
   border-radius: 50%;
   background: #23834d;
 }
 
-/* État hors connexion */
+/* État hors connexion si app.js ajoute la classe offline */
 #net.offline {
   border-color: #edb8b8;
   background: #ffe3e3;
@@ -86,10 +108,8 @@ header h1 {
   background: #a62929;
 }
 
-/* Aucun badge de version affiché */
-#versionBadge,
-.version-badge,
-.badge.version {
+/* Masque le badge V4.3 présent dans la page d’accueil */
+#home .badge {
   display: none !important;
 }
 
@@ -192,14 +212,17 @@ button:disabled {
 }
 
 /* =====================================================
-   GRILLES D'ACTIONS
+   GRILLES D’ACTIONS
    ===================================================== */
 
 .two,
 .actions3 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 10px;
+}
+
+.two {
+  grid-template-columns: 1fr 1fr;
 }
 
 .actions3 {
@@ -209,16 +232,6 @@ button:disabled {
 /* =====================================================
    INFORMATIONS ET MESSAGES
    ===================================================== */
-
-.badge:not(.version):not(.version-badge) {
-  display: inline-block;
-  width: auto;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #dff3e7;
-  color: #195c35;
-  font-weight: 800;
-}
 
 .hint {
   padding: 12px;
@@ -372,17 +385,16 @@ button:disabled {
     grid-column: 3;
     grid-row: 1;
     min-width: 0;
-    font-size: 1.18rem;
+    font-size: 1.17rem;
     line-height: 1.1;
-    text-align: left;
   }
 
   #net {
     grid-column: 4;
     grid-row: 1;
-    min-height: 32px;
-    padding: 5px 9px;
-    font-size: 0.82rem;
+    min-height: 31px;
+    padding: 5px 8px;
+    font-size: 0.8rem;
   }
 
   #net::before {
@@ -412,14 +424,10 @@ button:disabled {
 }
 
 /* =====================================================
-   TRÈS PETITS ÉCRANS
+   PETITS TÉLÉPHONES
    ===================================================== */
 
-@media (max-width: 390px) {
-  main {
-    padding: 8px;
-  }
-
+@media (max-width: 420px) {
   header {
     grid-template-columns: 42px 42px minmax(0, 1fr);
     gap: 6px;
@@ -431,10 +439,21 @@ button:disabled {
     font-size: 1.08rem;
   }
 
+  /* La pastille passe sous le titre pour éviter le chevauchement */
   #net {
     grid-column: 1 / -1;
     grid-row: 2;
     justify-self: end;
+  }
+}
+
+/* =====================================================
+   TRÈS PETITS ÉCRANS
+   ===================================================== */
+
+@media (max-width: 360px) {
+  main {
+    padding: 8px;
   }
 
   article {
