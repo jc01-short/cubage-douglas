@@ -1,9 +1,7 @@
-CUBAGE DOUGLAS V4.1
-
-- Option projets supprimée.
-- Grumes : volume conventionnel de Huber uniquement, obtenu par section du diamètre médian estimé à mi-longueur par interpolation du profil, multipliée par la longueur.
-- Classes forestières : seules les classes contenant au moins un arbre sont affichées.
-- Mise en page harmonisée et adaptée au téléphone.
-- Base IndexedDB conservée : cubage-douglas-v151, stores parcels, trees, measures.
-
-Déploiement : remplacer le contenu du dépôt GitHub Pages par les fichiers de ce ZIP.
+CUBAGE DOUGLAS V4.2
+- Saisie vocale fr-FR restaurée pour les diamètres, avec validation automatique paramétrable.
+- Bouton Nouvelle tige ajouté au résultat, à côté de Supprimer. Il reprend le type Arbre ou Grume.
+- Calcul grume : volume conventionnel Huber uniquement.
+- Classes vides masquées.
+- IndexedDB conservée : cubage-douglas-v151 ; stores parcels, trees, measures.
+Déployer tous les fichiers à la racine de GitHub Pages puis recharger une fois en ligne.

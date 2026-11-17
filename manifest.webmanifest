@@ -1,9 +1,8 @@
 {
-  "name": "Cubage Douglas V4.1",
-  "short_name": "Cubage V4.1",
+  "name": "Cubage Douglas V4.2",
+  "short_name": "Cubage V4.2",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#eef5f0",
-  "theme_color": "#195c35",
-  "icons": []
+  "theme_color": "#195c35"
 }
