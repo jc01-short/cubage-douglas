@@ -1,51 +1,6 @@
-const CACHE="cubage-douglas-complet-v27";
-const FILES=[
-  "./","./index.html","./styles.css","./db.js","./app.js",
-  "./ui-v21.js","./tree-type-fix-v27.js","./tree-protocol-v22.js",
-  "./modal-fix-v24.js","./reset-data-v25.js","./tree-voice-v26.js",
-  "./forest-classes-v26.js","./manifest.webmanifest",
-  "./icons/icon-192.png","./icons/icon-512.png"
-];
-self.addEventListener("install",e=>e.waitUntil(
-  caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())
-));
-self.addEventListener("activate",e=>e.waitUntil(
-  caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))
-    .then(()=>self.clients.claim())
-));
-async function patchHtml(response){
-  const type=response.headers.get("content-type")||"";
-  if(!type.includes("text/html"))return response;
-  let html=await response.text();
-  /* L'ordre est important : le correctif de type doit preceder le protocole Arbre. */
-  const files=[
-    "ui-v21.js","tree-type-fix-v27.js","tree-protocol-v22.js",
-    "modal-fix-v24.js","reset-data-v25.js","tree-voice-v26.js",
-    "forest-classes-v26.js"
-  ];
-  for(const file of files){
-    if(!html.includes(file))html=html.replace("</body>",'<script src="./'+file+'"></script></body>');
-  }
-  return new Response(html,{status:response.status,statusText:response.statusText,headers:response.headers});
-}
-self.addEventListener("fetch",e=>{
-  if(e.request.method!=="GET")return;
-  const url=new URL(e.request.url);
-  const page=e.request.mode==="navigate"||url.pathname.endsWith("/index.html");
-  if(page){
-    e.respondWith(fetch(e.request).then(r=>{
-      const copy=r.clone();
-      caches.open(CACHE).then(c=>c.put("./index.html",copy));
-      return patchHtml(r);
-    }).catch(async()=>{
-      const cached=await caches.match("./index.html");
-      return cached?patchHtml(cached):Response.error();
-    }));
-    return;
-  }
-  e.respondWith(fetch(e.request).then(r=>{
-    const copy=r.clone();
-    caches.open(CACHE).then(c=>c.put(e.request,copy));
-    return r;
-  }).catch(()=>caches.match(e.request)));
-});
+const CACHE="cubage-douglas-complet-v28";
+const FILES=["./","./index.html","./styles.css","./db.js","./app.js","./ui-v21.js","./tree-type-fix-v27.js","./tree-protocol-v22.js","./grume-form-fix-v28.js","./modal-fix-v24.js","./reset-data-v25.js","./tree-voice-v26.js","./forest-classes-v26.js","./manifest.webmanifest","./icons/icon-192.png","./icons/icon-512.png"];
+self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
+self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+async function patchHtml(response){const type=response.headers.get("content-type")||"";if(!type.includes("text/html"))return response;let html=await response.text();const files=["ui-v21.js","tree-type-fix-v27.js","tree-protocol-v22.js","grume-form-fix-v28.js","modal-fix-v24.js","reset-data-v25.js","tree-voice-v26.js","forest-classes-v26.js"];for(const file of files){if(!html.includes(file))html=html.replace("</body>",'<script src="./'+file+'"></script></body>');}return new Response(html,{status:response.status,statusText:response.statusText,headers:response.headers});}
+self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;const url=new URL(e.request.url),page=e.request.mode==="navigate"||url.pathname.endsWith("/index.html");if(page){e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put("./index.html",copy));return patchHtml(r);}).catch(async()=>{const cached=await caches.match("./index.html");return cached?patchHtml(cached):Response.error();}));return;}e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r;}).catch(()=>caches.match(e.request)));});
