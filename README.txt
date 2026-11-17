@@ -1,13 +1,13 @@
-MISE A JOUR V1.11 - TABLEAU DE BORD DE PARCELLE
+MISE A JOUR V1.12 - CLASSES FORESTIERES
 
-Après ouverture d'une parcelle :
-- un cadre récapitulatif affiche le nom de la parcelle ;
-- nombre d'arbres, de grumes, de tiges terminées et de profils en cours ;
-- volume Smalian moyen et total des tiges terminées ;
-- tableau du nombre de relevés par classe de diamètre ;
-- deux cadres homogènes : Arbres et Grumes ;
-- chaque cadre contient sa liste et son bouton de nouvelle saisie.
+Le tableau de répartition utilise désormais les classes forestières de 5 cm :
+- classe 20 : de 17,5 cm inclus à 22,5 cm exclu ;
+- classe 25 : de 22,5 cm inclus à 27,5 cm exclu ;
+- classe 30 : de 27,5 cm inclus à 32,5 cm exclu ;
+- etc.
 
-Classes de diamètre : <30, 30-39, 40-49, 50-59, 60-69, 70-79, >=80 cm. Le classement des arbres utilise D130. Celui des grumes utilise le premier diamètre mesuré au gros bout.
+La classe est calculée par arrondi du diamètre au multiple de 5 cm le plus proche. Pour les arbres, le diamètre de classement est le D130. Pour les grumes, c'est le premier diamètre mesuré au gros bout.
 
-GitHub : ajouter parcel-dashboard-patch.js et remplacer service-worker.js. Conserver tous les patchs précédents. Le cache passe en v8.
+Le tableau s'adapte automatiquement aux classes réellement présentes. Sans donnée, il affiche par défaut les classes 20 à 80.
+
+GitHub : remplacer parcel-dashboard-patch.js et service-worker.js. Le cache passe en v9. Les autres fichiers restent inchangés.
