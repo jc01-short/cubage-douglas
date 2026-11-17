@@ -1,25 +1,26 @@
-MISE À JOUR V2.5 - RÉINITIALISATION COMPLÈTE
+MISE À JOUR V2.6
 
-Un cadre « Réinitialisation » est ajouté en bas de l'écran d'accueil.
-Le bouton rouge « Tout effacer et repartir à zéro » supprime localement :
-- toutes les parcelles ;
-- tous les arbres ;
-- toutes les grumes ;
-- toutes les mesures et tous les profils.
+1. SAISIE VOCALE RÉTABLIE DANS LE NOUVEAU PROTOCOLE ARBRE
+- boutons Saisie clavier / Saisie vocale dans l'écran du profil d'arbre ;
+- appui sur le micro ;
+- affichage du diamètre compris ;
+- champ modifiable ;
+- bouton Valider ;
+- bouton Modifier / recommencer ;
+- aucune mesure vocale n'est enregistrée sans validation.
 
-Sécurité :
-1. affichage du nombre d'éléments qui seront supprimés ;
-2. première confirmation ;
-3. saisie obligatoire du mot EFFACER ;
-4. suppression des trois stores IndexedDB dans une seule transaction.
-
-Cette opération n'efface pas les fichiers CSV déjà téléchargés et ne modifie pas les fichiers GitHub. Elle ne concerne que les données IndexedDB de l'appareil utilisé.
+2. CLASSES FORESTIÈRES DYNAMIQUES
+- mise à jour automatique lors de l'ouverture de la parcelle et au fur et à mesure des saisies ;
+- classes de 5 cm : classe C = [C-2,5 ; C+2,5[ ;
+- affichage de 20 à la classe maximale réellement observée ;
+- aucun plafond à 80 cm ni à 150 cm ;
+- les classes 155, 160, etc. apparaissent automatiquement si nécessaire ;
+- arbres classés par D130, grumes par premier diamètre au gros bout.
 
 DÉPLOIEMENT GITHUB
-1. Ajouter reset-data-v25.js à la racine.
-2. Remplacer service-worker.js.
-3. Conserver ui-v21.js, tree-protocol-v22.js, modal-fix-v24.js et les fichiers de la V2.
-4. Committer puis ouvrir l'application avec Internet.
-5. Actualiser deux fois, fermer complètement, puis rouvrir.
+- ajouter tree-voice-v26.js ;
+- ajouter forest-classes-v26.js ;
+- remplacer service-worker.js ;
+- conserver ui-v21.js, tree-protocol-v22.js, modal-fix-v24.js, reset-data-v25.js et tous les fichiers V2.
 
-Le cache passe à cubage-douglas-complet-v25.
+Le cache passe à cubage-douglas-complet-v26. Après le commit : ouvrir en ligne, actualiser deux fois, fermer complètement puis rouvrir.
