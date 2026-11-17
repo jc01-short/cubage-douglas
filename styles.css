@@ -19,51 +19,87 @@ main {
 }
 
 /* =====================================================
-   EN-TÊTE CORRIGÉ
+   EN-TÊTE
    ===================================================== */
 
 header {
   display: grid;
-  grid-template-columns:
-    48px
-    48px
-    minmax(145px, auto)
-    minmax(0, 1fr);
+  grid-template-columns: 48px 48px minmax(0, 1fr) auto;
   gap: 8px;
   align-items: center;
   width: 100%;
   margin-bottom: 14px;
 }
 
-/* Boutons Accueil et Retour */
 header > button {
   min-width: 0;
 }
 
-/* Titre de l'application */
-h1 {
+header h1 {
   min-width: 0;
   margin: 0;
   font-size: 1.35rem;
   line-height: 1.15;
   text-align: left;
+  overflow-wrap: anywhere;
+}
+
+/* Petite pastille d'état « Prêt » */
+#net {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  width: auto;
+  min-width: auto;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid #b9ddc7;
+  border-radius: 999px;
+  background: #dff3e7;
+  color: #195c35;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1;
   white-space: nowrap;
 }
 
-/* Indicateur réseau / état « Prêt » */
-#net {
+#net::before {
+  content: "";
   display: block;
-  width: 100%;
-  min-width: 0;
-  justify-self: stretch;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #23834d;
+}
+
+/* État hors connexion */
+#net.offline {
+  border-color: #edb8b8;
+  background: #ffe3e3;
+  color: #7c1111;
+}
+
+#net.offline::before {
+  background: #a62929;
+}
+
+/* Aucun badge de version affiché */
+#versionBadge,
+.version-badge,
+.badge.version {
+  display: none !important;
 }
 
 /* =====================================================
    TITRES ET VUES
    ===================================================== */
+
+h1 {
+  font-size: 1.35rem;
+}
 
 h2 {
   margin: 0 0 14px;
@@ -85,8 +121,8 @@ h2 {
 article {
   margin-bottom: 14px;
   padding: 18px;
-  background: #fff;
   border-radius: 16px;
+  background: #fff;
   box-shadow: 0 4px 16px #173d2915;
 }
 
@@ -146,9 +182,9 @@ button:disabled {
 .light,
 #back,
 #homeBtn {
+  border: 1px solid #bad0c0;
   background: #edf5ef;
   color: #154f30;
-  border: 1px solid #bad0c0;
 }
 
 .danger {
@@ -171,22 +207,23 @@ button:disabled {
 }
 
 /* =====================================================
-   ÉTAT ET BADGES
+   INFORMATIONS ET MESSAGES
    ===================================================== */
 
-.badge,
-#net {
-  padding: 8px 12px;
+.badge:not(.version):not(.version-badge) {
+  display: inline-block;
+  width: auto;
+  padding: 6px 10px;
+  border-radius: 999px;
   background: #dff3e7;
   color: #195c35;
-  border-radius: 999px;
   font-weight: 800;
 }
 
 .hint {
   padding: 12px;
-  background: #edf5ef;
   border-radius: 12px;
+  background: #edf5ef;
   line-height: 1.4;
 }
 
@@ -235,8 +272,8 @@ button:disabled {
 .metric {
   min-width: 0;
   padding: 12px;
-  background: #edf5ef;
   border-radius: 12px;
+  background: #edf5ef;
 }
 
 .metric b {
@@ -302,41 +339,18 @@ button:disabled {
 
 .alert {
   padding: 12px;
+  border-radius: 12px;
   background: #ffe3e3;
   color: #7c1111;
-  border-radius: 12px;
 }
 
 /* =====================================================
-   ANIMATIONS
+   ANIMATION DU MICRO
    ===================================================== */
 
 @keyframes pulse {
   50% {
     opacity: 0.65;
-  }
-}
-
-/* =====================================================
-   TABLETTES ET ÉCRANS INTERMÉDIAIRES
-   Le bandeau passe sous les boutons et le titre.
-   ===================================================== */
-
-@media (max-width: 700px) {
-  header {
-    grid-template-columns: 48px 48px minmax(0, 1fr);
-  }
-
-  header h1 {
-    grid-column: 3;
-    grid-row: 1;
-    white-space: normal;
-    overflow-wrap: normal;
-  }
-
-  #net {
-    grid-column: 1 / -1;
-    grid-row: 2;
   }
 }
 
@@ -350,24 +364,32 @@ button:disabled {
   }
 
   header {
-    grid-template-columns: 44px 44px minmax(0, 1fr);
-    gap: 8px;
+    grid-template-columns: 44px 44px minmax(0, 1fr) auto;
+    gap: 7px;
   }
 
   header h1 {
     grid-column: 3;
     grid-row: 1;
     min-width: 0;
-    font-size: 1.25rem;
+    font-size: 1.18rem;
     line-height: 1.1;
     text-align: left;
   }
 
   #net {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    width: 100%;
-    justify-self: stretch;
+    grid-column: 4;
+    grid-row: 1;
+    min-height: 32px;
+    padding: 5px 9px;
+    font-size: 0.82rem;
+  }
+
+  #net::before {
+    width: 7px;
+    height: 7px;
+    flex-basis: 7px;
+    margin-right: 5px;
   }
 
   .two,
@@ -393,7 +415,7 @@ button:disabled {
    TRÈS PETITS ÉCRANS
    ===================================================== */
 
-@media (max-width: 360px) {
+@media (max-width: 390px) {
   main {
     padding: 8px;
   }
@@ -404,7 +426,15 @@ button:disabled {
   }
 
   header h1 {
-    font-size: 1.12rem;
+    grid-column: 3;
+    grid-row: 1;
+    font-size: 1.08rem;
+  }
+
+  #net {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: end;
   }
 
   article {
