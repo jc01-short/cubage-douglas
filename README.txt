@@ -1,26 +1,14 @@
-MISE A JOUR V2.2 - PROTOCOLE ARBRE EN UN SEUL PARCOURS
+CORRECTION V2.3 - INITIALISATION
 
-ARBRES
-- création avec Numéro + D130 seulement ;
-- pas imposé à 1 m ;
-- saisie régulière 0 m, 1 m, 2 m, etc. ;
-- bouton Fin de tige ;
-- saisie finale de Htot exacte et du dernier diamètre ;
-- Htot doit être située entre la dernière position régulière et la position entière suivante ;
-- état terminal : cime complète ou tige cassée ;
-- enregistrement d'une dernière section de longueur réelle, par exemple 42,00 m puis 42,50 m.
+Cause corrigée : ui-v21.js supprimait du DOM les contrôles backupJson et restoreJson, alors que app.js tentait encore de leur affecter onclick/onchange. Cela produisait : Cannot set properties of null (setting 'onclick').
 
-GRUMES
-- fonctionnement inchangé ;
-- pas 1 m, 2 m ou 4 m selon la V2.1.
+Correction : les contrôles JSON restent dans le DOM mais sont masqués. L'utilisateur ne les voit plus, et app.js peut terminer son initialisation normalement.
 
-CALCULS
-Les calculs Smalian et les découpes 20, 14 et 7 cm utilisent automatiquement la dernière position exacte et le dernier diamètre. Aucun champ H20/H14/H7 n'est demandé.
-
-GITHUB
-1. Ajouter tree-protocol-v22.js à la racine.
+Déploiement :
+1. Remplacer ui-v21.js.
 2. Remplacer service-worker.js.
-3. Conserver ui-v21.js et les fichiers de la V2.
-4. Committer, ouvrir en ligne, actualiser deux fois, fermer puis rouvrir.
+3. Conserver tree-protocol-v22.js et tous les fichiers V2.
+4. Committer sur GitHub.
+5. Ouvrir avec Internet, actualiser deux fois, fermer complètement puis rouvrir.
 
-Le cache passe à cubage-douglas-complet-v22. La base IndexedDB reste inchangée.
+Supprimer des fichiers de votre PC après leur déploiement GitHub n'a aucun effet sur le site. Les fichiers utiles sont ceux présents dans le dépôt GitHub et dans le cache du navigateur.
