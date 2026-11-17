@@ -1,1 +1,39 @@
-const CACHE_NAME='cubage-douglas-pwa-v9';const FILES=['./','./index.html','./manifest.webmanifest','./delete-tree-patch.js','./delete-parcel-patch.js','./grumes-patch.js','./volume-recap-patch.js','./parcel-dashboard-patch.js','./icons/icon-192.png','./icons/icon-512.png'];self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE_NAME).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));async function patch(r){const ct=r.headers.get('content-type')||'';if(!ct.includes('text/html'))return r;let h=await r.text();if(!h.includes('v161-home-patch'))h=h.replace('</head>','<style id="v161-home-patch">#home #goNewTree{display:none!important}</style></head>');for(const f of ['delete-tree-patch.js','delete-parcel-patch.js','grumes-patch.js','volume-recap-patch.js','parcel-dashboard-patch.js'])if(!h.includes(f))h=h.replace('</body>','<script src="./'+f+'"></script></body>');return new Response(h,{status:r.status,statusText:r.statusText,headers:r.headers})}self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url),page=e.request.mode==='navigate'||u.pathname.endsWith('/index.html');if(page){e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE_NAME).then(x=>x.put('./index.html',c));return patch(r)}).catch(async()=>{const c=await caches.match('./index.html');return c?patch(c):Response.error()}));return}e.respondWith(caches.match(e.request).then(c=>c||fetch(e.request).then(r=>{const x=r.clone();caches.open(CACHE_NAME).then(k=>k.put(e.request,x));return r}))) });
+const CACHE_NAME='cubage-douglas-pwa-v10';
+const FILES=[
+  './','./index.html','./manifest.webmanifest',
+  './delete-tree-patch.js','./delete-parcel-patch.js','./grumes-patch.js',
+  './volume-recap-patch.js','./parcel-dashboard-patch.js','./parcel-layout-patch.js',
+  './icons/icon-192.png','./icons/icon-512.png'
+];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE_NAME).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
+async function patch(r){
+  const ct=r.headers.get('content-type')||'';
+  if(!ct.includes('text/html'))return r;
+  let h=await r.text();
+  if(!h.includes('v161-home-patch'))h=h.replace('</head>','<style id="v161-home-patch">#home #goNewTree{display:none!important}</style></head>');
+  for(const f of ['delete-tree-patch.js','delete-parcel-patch.js','grumes-patch.js','volume-recap-patch.js','parcel-dashboard-patch.js','parcel-layout-patch.js']){
+    if(!h.includes(f))h=h.replace('</body>','<script src="./'+f+'"></script></body>');
+  }
+  return new Response(h,{status:r.status,statusText:r.statusText,headers:r.headers});
+}
+self.addEventListener('fetch',e=>{
+  if(e.request.method!=='GET')return;
+  const u=new URL(e.request.url),page=e.request.mode==='navigate'||u.pathname.endsWith('/index.html');
+  if(page){
+    e.respondWith(fetch(e.request).then(r=>{
+      const c=r.clone();
+      caches.open(CACHE_NAME).then(x=>x.put('./index.html',c));
+      return patch(r);
+    }).catch(async()=>{
+      const c=await caches.match('./index.html');
+      return c?patch(c):Response.error();
+    }));
+    return;
+  }
+  e.respondWith(caches.match(e.request).then(c=>c||fetch(e.request).then(r=>{
+    const x=r.clone();
+    caches.open(CACHE_NAME).then(k=>k.put(e.request,x));
+    return r;
+  })));
+});

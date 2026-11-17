@@ -1,13 +1,21 @@
-MISE A JOUR V1.12 - CLASSES FORESTIERES
+MISE A JOUR V1.13 - MISE EN PAGE PARCELLE
 
-Le tableau de répartition utilise désormais les classes forestières de 5 cm :
-- classe 20 : de 17,5 cm inclus à 22,5 cm exclu ;
-- classe 25 : de 22,5 cm inclus à 27,5 cm exclu ;
-- classe 30 : de 27,5 cm inclus à 32,5 cm exclu ;
-- etc.
+Nouvel ordre de l'écran parcelle :
+1. cadre de synthèse de la parcelle ;
+2. cadre Arbres ;
+3. cadre Grumes ;
+4. bouton de suppression de la parcelle.
 
-La classe est calculée par arrondi du diamètre au multiple de 5 cm le plus proche. Pour les arbres, le diamètre de classement est le D130. Pour les grumes, c'est le premier diamètre mesuré au gros bout.
+Le cadre Arbres est sorti de l'ancien cadre de titre de parcelle.
+Les cadres Arbres et Grumes utilisent la même présentation :
+- titre et compteur en haut ;
+- liste des saisies ;
+- bouton de nouvelle saisie à l'intérieur du cadre.
 
-Le tableau s'adapte automatiquement aux classes réellement présentes. Sans donnée, il affiche par défaut les classes 20 à 80.
+Aucune donnée, aucun calcul et aucune fonction métier n'est modifié.
 
-GitHub : remplacer parcel-dashboard-patch.js et service-worker.js. Le cache passe en v9. Les autres fichiers restent inchangés.
+Déploiement GitHub :
+- ajouter parcel-layout-patch.js à la racine ;
+- remplacer service-worker.js ;
+- conserver parcel-dashboard-patch.js et tous les autres patchs.
+Le cache passe en v10.
