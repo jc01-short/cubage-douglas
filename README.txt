@@ -1,24 +1,16 @@
-CUBAGE DOUGLAS V2 - VERSION CONSOLIDEE
+MISE A JOUR V2.1
 
-Cette archive remplace tous les anciens fichiers et patchs.
+Modifications :
+- suppression du pas de 0,5 m ;
+- maintien des pas 1 m, 2 m et 4 m, avec 1 m sélectionné par défaut ;
+- ajout du bouton « Accueil » dans la barre supérieure ;
+- suppression des commandes de sauvegarde et restauration JSON ;
+- maintien des deux exports CSV quotidiens.
 
 DEPLOIEMENT GITHUB
-1. Exporter les données actuelles en CSV et, si possible, en JSON avant remplacement.
-2. Dans le dépôt GitHub, supprimer tous les anciens fichiers, y compris les patchs.
-3. Conserver le dépôt et son adresse GitHub Pages.
-4. Décompresser cette archive et envoyer à la racine : index.html, styles.css, db.js, app.js, manifest.webmanifest, service-worker.js et le dossier icons.
-5. Committer, attendre GitHub Pages, ouvrir avec Internet et actualiser deux fois.
+1. Ajouter ui-v21.js à la racine du dépôt.
+2. Remplacer service-worker.js.
+3. Conserver index.html, styles.css, db.js, app.js, manifest.webmanifest et le dossier icons.
+4. Committer, ouvrir l'application avec Internet, actualiser deux fois, fermer puis rouvrir.
 
-La base IndexedDB conserve le nom cubage-douglas-v151 afin de réutiliser les données locales existantes sur la même adresse. Une sauvegarde reste recommandée.
-
-FONCTIONS
-- parcelles, arbres et grumes ;
-- profils au pas 0,5 / 1 / 2 / 4 m ;
-- saisie clavier et vocale avec validation ;
-- suppression en cascade ;
-- tableau de bord et classes forestières de 5 cm ;
-- volumes Smalian total, 20, 14, 7 cm et DMM ;
-- exports CSV ;
-- sauvegarde/restauration JSON ;
-- PWA hors ligne ;
-- diagnostic de démarrage avec bouton Réessayer.
+Le cache PWA passe à cubage-douglas-complet-v21. Les données IndexedDB ne sont pas effacées.
