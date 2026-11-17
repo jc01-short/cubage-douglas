@@ -1,0 +1,1 @@
+Cubage Douglas V4 consolidée. Ajout volume conventionnel grume, H20/H14/H7 et V20/V14/V7 réels. Cache v4.
