@@ -7,9 +7,9 @@
   // Au chargement de la page, on écoute le changement de parcelle
   document.addEventListener('DOMContentLoaded', () => {
     const parcelSelect = document.getElementById('parcelSelect');
-    const parcelId = parcelIdParse = parcelId ? parseInt(parcelSelect.value) : null;
-    const measures = loadMeasures(parcelIdParse);
-    renderMeasures(measures, parcelIdParse);
+    const parcelId = parcelSelect ? parseInt(parcelSelect.value) : null;
+    const measures = loadMeasures(parcelId);
+    renderMeasures(measures, parcelId);
 
     // Écoute du changement de parcelle
     if (parcelSelect) {
@@ -23,19 +23,26 @@
       });
     }
 
+    // Récupération des valeurs des champs de saisie (remplace prompt())
+    const hauteurInput = document.getElementById('hauteur_saisie');
+    const diametreInput = document.getElementById('diametre_saisie');
+
     // Bouton "Ajouter une mesure"
     const btnAdd = document.getElementById('btnAddCouple');
     if (btnAdd) {
       btnAdd.addEventListener('click', () => {
-        const h = prompt('Hauteur totale (m) :');
-        if (h === null || isNaN(h) || h <= 0) { document.getElementById('couplesMsg').textContent = 'Hauteur invalide.'; return; }
-        const d = prompt('Diamètre 1,30 m (cm) :');
-        if (d === null || isNaN(d) || d <= 0) { document.getElementById('couplesMsg').textContent = 'Diamètre invalide.'; return; }
+        const h = hauteurInput.value;
+        const d = diametreInput.value;
+        if (!h || isNaN(h) || h <= 0) { document.getElementById('couplesMsg').textContent = 'Hauteur invalide.'; return; }
+        if (!d || isNaN(d) || d <= 0) { document.getElementById('couplesMsg').textContent = 'Diamètre invalide.'; return; }
         mesures.push({ h: parseFloat(h), d: parseFloat(d) });
         const pId = document.getElementById('parcelSelect') ? document.getElementById('parcelSelect').value : null;
         saveMeasures(mesures, pId);
         renderMeasures(mesures, pId);
         document.getElementById('couplesMsg').textContent = 'Nouvelle mesure enregistrée.';
+        // Réinitialiser les champs
+        hauteurInput.value = '';
+        diametreInput.value = '';
       });
     }
 
