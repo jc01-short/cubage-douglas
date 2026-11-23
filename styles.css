@@ -160,7 +160,7 @@ input,
 select,
 button {
   width: 100%;
-  min-height: 52px;
+  min-height: 48px;
   border-radius: 12px;
   font: inherit;
 }
@@ -175,7 +175,7 @@ select {
 }
 
 button {
-  padding: 11px;
+  padding: 15px 20px;
   border: 0;
   background: #19663c;
   color: #fff;
@@ -223,6 +223,20 @@ button:disabled {
 
 .two {
   grid-template-columns: 1fr 1fr;
+}
+
+/* Grille pour les 3 boutons sur desktop */
+.three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+/* Responsive : passage en une colonne sur petit écran */
+@media (max-width: 560px) {
+  .three {
+    grid-template-columns: 1fr;
+  }
 }
 
 .actions3 {
